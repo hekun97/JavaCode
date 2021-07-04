@@ -26,13 +26,13 @@ public class JdbcDemo4 {
             //4. 获取结果
             rs = ps.executeQuery();
             //5. 处理结果
-
+            //建立
             accounts = new ArrayList<>();
             while (rs.next()) {
                 int id = rs.getInt(1);
                 String name = rs.getString(2);
                 int balance = rs.getInt(3);
-                //创建account对象，并复制
+                //创建account对象，并赋值
                 Account account = new Account();
                 account.setId(id);
                 account.setName(name);
