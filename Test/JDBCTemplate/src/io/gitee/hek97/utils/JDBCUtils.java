@@ -32,7 +32,7 @@ public class JDBCUtils {
      * 连接池对象
      * @return 连接池对象
      */
-    public static DataSource getDs(){
+    public static DataSource getDataSource(){
         return ds;
     }
 
