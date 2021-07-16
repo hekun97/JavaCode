@@ -1,5 +1,6 @@
 package io.gitee.hek97.cookie;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -13,8 +14,8 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@WebServlet("/cookieDemo7")
-public class CookieDemo7 extends HttpServlet {
+@WebServlet("/cookieTest")
+public class CookieTest extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //1.设置响应编码
         response.setContentType("text/html;charset=utf-8");
