@@ -7,7 +7,7 @@ public class User {
     private String gender;
     private int age;
     private String address;
-    private int qq;
+    private String qq;
     private String email;
 
     public int getId() {
@@ -50,11 +50,11 @@ public class User {
         this.address = address;
     }
 
-    public int getQq() {
+    public String getQq() {
         return qq;
     }
 
-    public void setQq(int qq) {
+    public void setQq(String qq) {
         this.qq = qq;
     }
 
