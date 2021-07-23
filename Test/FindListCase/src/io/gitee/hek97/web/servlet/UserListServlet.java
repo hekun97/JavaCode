@@ -17,16 +17,13 @@ public class UserListServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //1.设置编码
         response.setCharacterEncoding("utf-8");
-        System.out.println("nihao");
         //2.调用UserService中的findAll()方法完成查询
         UserService UserService = new UserServiceImpl();
         List<User> users = UserService.findAll();
-        System.out.println("servlet"+users);
         //3.将List集合存入request域中
         request.setAttribute("users",users);
-
         //4.转发到list.jsp页面
-        request.getRequestDispatcher("list.jsp").forward(request,response);
+        request.getRequestDispatcher("/list.jsp").forward(request,response);
 
     }
 

@@ -16,8 +16,28 @@ public class UserServiceImpl implements UserService {
     public List<User> findAll() {
         //调用dao查询数据
         List<User> users = dao.findAll();
-        System.out.println("Service"+users);
         //返回查询的数据
         return users;
+    }
+
+    @Override
+    public int update(User user) {
+        //调用dao查询数据
+        int i = dao.update(user);
+        return i;
+    }
+
+    @Override
+    public int delete(Integer id) {
+        //调用dao删除数据
+        int i = dao.delete(id);
+        return i;
+    }
+
+    @Override
+    public int insert(User user) {
+        //调用dao添加数据
+        int i = dao.insert(user);
+        return i;
     }
 }

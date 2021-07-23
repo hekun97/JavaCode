@@ -1,7 +1,8 @@
-package io.gitee.hekun97.web.servlet;
+package io.gitee.hek97.web.servlet;
 
-import io.gitee.hekun97.dao.UserDao;
-import io.gitee.hekun97.domain.User;
+import io.gitee.hek97.domain.User;
+import io.gitee.hek97.service.UserService;
+import io.gitee.hek97.service.impl.UserServiceImpl;
 import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.ServletException;
@@ -13,39 +14,34 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
-@WebServlet("/loginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/userUpdateServlet")
+public class UserUpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //1.设置编码
         request.setCharacterEncoding("utf-8");
-        /*//2.获取数据
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        //3.封装数据
-        User loginUser = new User();
-        loginUser.setUsername(username);
-        loginUser.setPassword(password);*/
-        //2.获取数据
+        //2.获取update页面请求体中的所有数据
         Map<String, String[]> map = request.getParameterMap();
         //3.使用BeanUtils工具类封装map集合的数据到JavaBean对象User
-        User loginUser = new User();
+        User user = new User();
         try {
-            BeanUtils.populate(loginUser,map);
+            BeanUtils.populate(user,map);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-        //4.调用登录方法判断
-        User user = new UserDao().login(loginUser);
-        if(user==null){
-            //登录失败，转发失败页面
-            request.getRequestDispatcher("/failServlet").forward(request,response);
-        }else{
-            //登录成功，将user存入共享域对象
-            request.setAttribute("user",user);
-            //转发到成功页面
-            request.getRequestDispatcher("/successServlet").forward(request,response);
+        //4.调用UserService中的update()方法进行更新
+        UserService service = new UserServiceImpl();
+        int i = service.update(user);
+        //5.将更新结果存入request域
+        request.setAttribute("update",i);
+        System.out.println(i);
+        //6.请求转发并给出更新结果
+        if(i==1){
+            request.getRequestDispatcher("/userListServlet").forward(request,response);
+        }
+        else {
+            request.getRequestDispatcher("/update.jsp").forward(request,response);
         }
     }
 

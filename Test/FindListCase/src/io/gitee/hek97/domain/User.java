@@ -2,19 +2,19 @@ package io.gitee.hek97.domain;
 
 public class User {
 
-    private int id;
+    private Integer id;
     private String name;
     private String gender;
-    private int age;
+    private Integer age;
     private String address;
     private String qq;
     private String email;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -34,11 +34,11 @@ public class User {
         this.gender = gender;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 

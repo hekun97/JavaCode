@@ -30,7 +30,6 @@
 <body>
 <%
     List<User> users = (List<User>) request.getAttribute("users");
-    System.out.println("jsp"+users);
 %>
 <div class="container">
     <h3 style="text-align: center">用户信息列表</h3>
@@ -54,7 +53,7 @@
                 <td>${user.address}</td>
                 <td>${user.qq}</td>
                 <td>${user.email}</td>
-                <td><a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;<a class="btn btn-default btn-sm" href="">删除</a></td>
+                <td><a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/update.jsp?id=${user.id}">修改</a>&nbsp;<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/userDeleteServlet?id=${user.id}">删除</a></td>
             </tr>
         </c:forEach>
     </table>

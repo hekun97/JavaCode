@@ -1,10 +1,7 @@
-<!-- HTML5文档-->
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!-- 网页使用的语言 -->
 <html lang="zh-CN">
 <head>
-    <!-- 指定字符集 -->
-    <meta charset="utf-8">
     <!-- 使用Edge最新的浏览器的渲染方式 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- viewport视口：网页可以根据设置的宽度自动进行适配，在浏览器的内部虚拟一个容器，容器的宽度与设备的宽度相同。
@@ -24,7 +21,7 @@
 <body>
 <div class="container">
     <center><h3>添加联系人页面</h3></center>
-    <form action="" method="post">
+    <form action="${pageContext.request.contextPath}/userAddServlet" method="post">
         <div class="form-group">
             <label for="name">姓名：</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="请输入姓名">
@@ -32,8 +29,8 @@
 
         <div class="form-group">
             <label>性别：</label>
-            <input type="radio" name="sex" value="男" checked="checked"/>男
-            <input type="radio" name="sex" value="女"/>女
+            <input type="radio" name="gender" value="男" checked="checked"/>男
+            <input type="radio" name="gender" value="女"/>女
         </div>
 
         <div class="form-group">
@@ -42,7 +39,7 @@
         </div>
 
         <div class="form-group">
-            <label for="address">籍贯：</label>
+            <label>籍贯：</label>
             <select name="address" class="form-control" id="jiguan">
                 <option value="广东">广东</option>
                 <option value="广西">广西</option>
@@ -51,12 +48,12 @@
         </div>
 
         <div class="form-group">
-            <label for="qq">QQ：</label>
+            <label>QQ：</label>
             <input type="text" class="form-control" name="qq" placeholder="请输入QQ号码"/>
         </div>
 
         <div class="form-group">
-            <label for="email">Email：</label>
+            <label>Email：</label>
             <input type="text" class="form-control" name="email" placeholder="请输入邮箱地址"/>
         </div>
 

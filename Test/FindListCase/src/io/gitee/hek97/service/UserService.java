@@ -14,4 +14,23 @@ public interface UserService {
      */
     public List<User> findAll();
 
+    /**
+     * 更新用户信息的方法
+     * @return 返回受影响的行数
+     */
+    public int update(User user);
+
+    /**
+     * 删除用户信息的方法
+     * @param id
+     * @return 返回受影响的行数
+     */
+    public int delete(Integer id);
+
+    /**
+     * 添加用户信息的方法
+     * @param user 返回受影响的行数
+     * @return
+     */
+    public int insert(User user);
 }
