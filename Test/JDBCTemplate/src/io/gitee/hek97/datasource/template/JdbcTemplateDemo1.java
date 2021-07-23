@@ -1,6 +1,6 @@
 package io.gitee.hek97.datasource.template;
 
-import io.gitee.hek97.utils.JDBCUtils;
+import io.gitee.hek97.util.JDBCUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class JdbcTemplateDemo1 {

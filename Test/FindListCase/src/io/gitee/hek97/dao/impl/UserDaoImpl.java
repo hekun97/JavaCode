@@ -2,7 +2,7 @@ package io.gitee.hek97.dao.impl;
 
 import io.gitee.hek97.dao.UserDao;
 import io.gitee.hek97.domain.User;
-import io.gitee.hek97.utils.JDBCUtils;
+import io.gitee.hek97.util.JDBCUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 

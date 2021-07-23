@@ -1,8 +1,7 @@
 package io.gitee.hek97.datasource.druid;
 
-import io.gitee.hek97.utils.JDBCUtils;
+import io.gitee.hek97.util.JDBCUtils;
 
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

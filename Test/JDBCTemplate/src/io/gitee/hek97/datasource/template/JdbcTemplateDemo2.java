@@ -1,13 +1,12 @@
 package io.gitee.hek97.datasource.template;
 
 import io.gitee.hek97.domain.Account;
-import io.gitee.hek97.utils.JDBCUtils;
+import io.gitee.hek97.util.JDBCUtils;
 import org.junit.Test;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
-import java.lang.invoke.VarHandle;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;

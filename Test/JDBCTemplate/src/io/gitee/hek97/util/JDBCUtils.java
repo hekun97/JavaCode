@@ -1,4 +1,4 @@
-package io.gitee.hek97.utils;
+package io.gitee.hek97.util;
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
