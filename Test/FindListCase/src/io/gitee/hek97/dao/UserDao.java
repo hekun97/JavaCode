@@ -12,4 +12,5 @@ public interface UserDao {
     public int update(User user);
     public int delete(Integer id);
     public int insert(User user);
+    public User findUser(Integer id);
 }

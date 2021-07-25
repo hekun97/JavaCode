@@ -35,7 +35,6 @@ public class UserUpdateServlet extends HttpServlet {
         int i = service.update(user);
         //5.将更新结果存入request域
         request.setAttribute("update",i);
-        System.out.println(i);
         //6.请求转发并给出更新结果
         if(i==1){
             request.getRequestDispatcher("/userListServlet").forward(request,response);

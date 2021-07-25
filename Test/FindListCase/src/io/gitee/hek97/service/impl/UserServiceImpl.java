@@ -40,4 +40,11 @@ public class UserServiceImpl implements UserService {
         int i = dao.insert(user);
         return i;
     }
+
+    @Override
+    public User findUser(Integer id) {
+        //调用dao查找数据
+        User user = dao.findUser(id);
+        return user;
+    }
 }

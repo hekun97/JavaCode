@@ -33,4 +33,11 @@ public interface UserService {
      * @return
      */
     public int insert(User user);
+
+    /**
+     * 查找用户
+     * @param id
+     * @return
+     */
+    public User findUser(Integer id);
 }

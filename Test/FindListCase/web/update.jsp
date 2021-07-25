@@ -14,46 +14,50 @@
 
 </head>
 <body>
-<%
-    String id = request.getParameter("id");
-%>
 <div class="container" style="width: 400px;">
     <h3 style="text-align: center;">修改联系人</h3>
     <form action="${pageContext.request.contextPath}/userUpdateServlet" method="post">
-        <input type="hidden" name="id" value="<%=id%>"/>
+        <input type="hidden" name="id" value="${user.id}"/>
         <div class="form-group">
             <label for="name">姓名：</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="请输入姓名"/>
+            <input type="text" class="form-control" id="name" name="name" placeholder="请输入姓名" value="${user.name}"/>
         </div>
 
         <div class="form-group">
             <label>性别：</label>
-            <input type="radio" name="gender" value="男"/>男
-            <input type="radio" name="gender" value="女"/>女
+            <c:if test="${user.gender=='男'}">
+                <input type="radio" name="gender" value="男" checked/>男
+                <input type="radio" name="gender" value="女"/>女
+            </c:if>
+            <c:if test="${user.gender=='女'}">
+                <input type="radio" name="gender" value="男"/>男
+                <input type="radio" name="gender" value="女" checked/>女
+            </c:if>
         </div>
 
         <div class="form-group">
             <label for="age">年龄：</label>
-            <input type="text" class="form-control" id="age" name="age" placeholder="请输入年龄"/>
+            <input type="text" class="form-control" id="age" name="age" placeholder="请输入年龄" value="${user.age}"/>
         </div>
 
         <div class="form-group">
             <label>籍贯：</label>
             <select name="address" class="form-control">
-                <option value="广东">广东</option>
-                <option value="广西">广西</option>
-                <option value="湖南">湖南</option>
+                    <option value="${user.address}">${user.address}</option>
+                <c:forEach items="${addresses}" var="address" varStatus="s">
+                    <option value="${address}">${address}</option>
+                </c:forEach>
             </select>
         </div>
 
         <div class="form-group">
             <label>QQ：</label>
-            <input type="text" class="form-control" name="qq" placeholder="请输入QQ号码"/>
+            <input type="text" class="form-control" name="qq" placeholder="请输入QQ号码" value="${user.qq}"/>
         </div>
 
         <div class="form-group">
             <label>Email：</label>
-            <input type="text" class="form-control" name="email" placeholder="请输入邮箱地址"/>
+            <input type="text" class="form-control" name="email" placeholder="请输入邮箱地址" value="${user.email}"/>
         </div>
 
         <div class="form-group" style="text-align: center">
