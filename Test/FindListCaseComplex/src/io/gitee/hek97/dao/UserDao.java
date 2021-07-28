@@ -8,9 +8,13 @@ import java.util.List;
  * 用户操作的dao
  */
 public interface UserDao {
-    public List<User> findAll();
-    public int update(User user);
-    public int delete(Integer id);
-    public int insert(User user);
-    public User findUser(Integer id);
+    List<User> findAll();
+
+    int update(User user);
+
+    int delete(Integer id);
+
+    int insert(User user);
+
+    User findUser(Integer id);
 }

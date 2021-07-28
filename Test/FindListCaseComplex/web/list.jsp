@@ -28,17 +28,44 @@
     </style>
 </head>
 <script>
+    //删除单条用户的安全提示
     function deleteUser(id) {
-        //删除单条用户的安全提示
+        //confirm弹出确认框，确定返回true，取消返回false
         if (confirm("你确定要删除该条用户信息")) {
             //访问路径
             location.href = "${pageContext.request.contextPath}/userDeleteServlet?id=" + id;
         }
     }
-    window.onload=function () {
-        //给删除选中按钮添加单击事件
-        document.getElementById("delSelected").onclick = function () {
 
+
+    window.onload = function () {
+        //给删除选中按钮添加单击事件
+        //给删除选中按钮(id=delSelected)添加单击事件，触发函数function()
+        document.getElementById("delSelected").onclick = function () {
+            if (confirm("你确定要删除选中信息吗？")) {
+                var flag = false;
+                var cbs = document.getElementsByName("uid");
+                for (var i = 0; i < cbs.length; i++) {
+                    if(cbs[i].checked){
+                        flag=true;
+                        break;
+                    }
+                }
+                if(flag){
+                    //将复选框的值(name=uid,value=用户的id)通过表单(id=form)提交到路径/delSelectUser
+                    document.getElementById("form").submit();
+                }
+            }
+        }
+        //设置全选和反选
+        document.getElementById("firstCb").onclick = function () {
+            //获取用户复选框数组
+            var cbs = document.getElementsByName("uid");
+            //遍历用户复选框数组
+            for (var i = 0; i < cbs.length; i++) {
+                //设置用户复选框状态和firstCb的状态保持一致
+                cbs[i].checked = this.checked;
+            }
         }
 
     }
@@ -67,10 +94,10 @@
         <a class="btn btn-primary btn-sm" href="${pageContext.request.contextPath}/add.jsp">添加用户</a>&nbsp;
         <a class="btn btn-danger btn-sm" href="javascript:void(0);" id="delSelected">删除选中</a>
     </div>
-    <form action="${pageContext.request.contentType}/delSelectUser" method="post">
+    <form id="form" action="${pageContext.request.contextPath}/delSelectServlet" method="post">
         <table border="1" class="table table-bordered table-hover">
             <tr class="success">
-                <th><input type="checkbox"></th>
+                <th><input type="checkbox" id="firstCb"></th>
                 <th>编号</th>
                 <th>姓名</th>
                 <th>性别</th>
