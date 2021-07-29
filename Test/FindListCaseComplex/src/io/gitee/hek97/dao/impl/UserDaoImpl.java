@@ -61,4 +61,22 @@ public class UserDaoImpl implements UserDao {
         User user = template.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), id);
         return user;
     }
+
+    @Override
+    public int findTotalCount() {
+        //2.定义sql语句
+        String sql = "select count(*) from user";
+        //3.执行sql
+        Integer count = template.queryForObject(sql, Integer.class);
+        return count;
+    }
+
+    @Override
+    public List<User> findByPage(int start, int rows) {
+        //2.定义sql语句
+        String sql = "select * from user limit ? , ?";
+        //3.执行sql
+        List<User> list = template.query(sql, new BeanPropertyRowMapper<User>(User.class), start, rows);
+        return list;
+    }
 }

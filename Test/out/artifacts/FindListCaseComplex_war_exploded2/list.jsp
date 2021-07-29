@@ -107,7 +107,7 @@
                 <th>邮箱</th>
                 <th>操作</th>
             </tr>
-            <c:forEach items="${users}" var="user" varStatus="s">
+            <c:forEach items="${pb.list}" var="user" varStatus="s">
                 <tr>
                     <td><input type="checkbox" name="uid" value="${user.id}"></td>
                     <td>${s.count}</td>
@@ -143,7 +143,7 @@
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
-            <span style="font-size: 25px;margin-left: 5px">共 XX 条记录，共 XX 页</span>
+            <span style="font-size: 25px;margin-left: 5px">共 ${pb.totalCount} 条记录，共 ${pb.totalPage} 页</span>
         </ul>
     </nav>
 

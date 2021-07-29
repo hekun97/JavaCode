@@ -1,5 +1,6 @@
 package io.gitee.hek97.service;
 
+import io.gitee.hek97.domain.PageBean;
 import io.gitee.hek97.domain.User;
 
 import java.util.List;
@@ -53,4 +54,12 @@ public interface UserService {
      * @return
      */
     void delSelect(String[] uids);
+
+    /**
+     * 通过当前页码和每页的记录数来实现分页
+     * @param _currentPage 当前页码
+     * @param _rows 每页的记录数
+     * @return 分页的对象
+     */
+    PageBean<User> findUserByPage(String _currentPage,String _rows);
 }

@@ -2,6 +2,7 @@ package io.gitee.hek97.service.impl;
 
 import io.gitee.hek97.dao.UserDao;
 import io.gitee.hek97.dao.impl.UserDaoImpl;
+import io.gitee.hek97.domain.PageBean;
 import io.gitee.hek97.domain.User;
 import io.gitee.hek97.service.UserService;
 
@@ -11,7 +12,8 @@ import java.util.List;
  * 用户管理的实体类
  */
 public class UserServiceImpl implements UserService {
-    private UserDao dao =new UserDaoImpl();//调用UserService类时，获取一个UserDaoImpl对象。
+    private UserDao dao = new UserDaoImpl();//调用UserService类时，获取一个UserDaoImpl对象。
+
     @Override
     public List<User> findAll() {
         //调用dao查询数据
@@ -54,5 +56,29 @@ public class UserServiceImpl implements UserService {
         for (String uid : uids) {
             dao.delete(Integer.parseInt(uid));
         }
+    }
+
+    @Override
+    public PageBean<User> findUserByPage(String _currentPage, String _rows) {
+        int currentPage = Integer.parseInt(_currentPage);
+        int rows = Integer.parseInt(_rows);
+        //1.创建空的PageBean对象
+        PageBean<User> pb = new PageBean<>();
+        //2.给PageBean对象的当前页码(currentPage)和每页显示的条数(rows)赋值
+        pb.setCurrentPage(currentPage);
+        pb.setRows(rows);
+        //3.调用dao查询总记录数totalCount，并给PageBean对象的总记录数(totalCount)赋值
+        int totalCount = dao.findTotalCount();
+        pb.setTotalCount(totalCount);
+        //4.计算开始的索引
+        int start = (currentPage - 1) * rows;
+        // 5.调用dao查询每页数据的list集合，并赋值给pageBean对象
+        List<User> list = dao.findByPage(start, rows);
+        pb.setList(list);
+        //6.计算总页数,并赋值给pageBean对象
+        int totalPage = (totalCount % rows == 0) ? (totalCount / rows) : (totalCount / rows + 1);
+        pb.setTotalPage(totalPage);
+        //7.返回pageBean对象
+        return pb;
     }
 }
