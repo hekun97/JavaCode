@@ -36,7 +36,7 @@ public class UserAddServlet extends HttpServlet {
         int i = service.insert(user);
         //5.请求转发
         if(i==1){
-            request.getRequestDispatcher("/userListServlet").forward(request,response);
+            request.getRequestDispatcher("/findUserByPageServlet").forward(request,response);
         }
     }
 

@@ -62,6 +62,9 @@ public class UserServiceImpl implements UserService {
     public PageBean<User> findUserByPage(String _currentPage, String _rows) {
         int currentPage = Integer.parseInt(_currentPage);
         int rows = Integer.parseInt(_rows);
+        if (currentPage <= 0) {
+            currentPage = 1;
+        }
         //1.创建空的PageBean对象
         PageBean<User> pb = new PageBean<>();
         //2.给PageBean对象的当前页码(currentPage)和每页显示的条数(rows)赋值

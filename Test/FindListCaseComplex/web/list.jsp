@@ -46,12 +46,12 @@
                 var flag = false;
                 var cbs = document.getElementsByName("uid");
                 for (var i = 0; i < cbs.length; i++) {
-                    if(cbs[i].checked){
-                        flag=true;
+                    if (cbs[i].checked) {
+                        flag = true;
                         break;
                     }
                 }
-                if(flag){
+                if (flag) {
                     //将复选框的值(name=uid,value=用户的id)通过表单(id=form)提交到路径/delSelectUser
                     document.getElementById("form").submit();
                 }
@@ -110,7 +110,7 @@
             <c:forEach items="${pb.list}" var="user" varStatus="s">
                 <tr>
                     <td><input type="checkbox" name="uid" value="${user.id}"></td>
-                    <td>${s.count}</td>
+                    <td>${s.count + (pb.currentPage-1)*pb.rows}</td>
                     <td>${user.name}</td>
                     <td>${user.gender}</td>
                     <td>${user.age}</td>
@@ -128,21 +128,48 @@
     </form>
     <nav aria-label="Page navigation">
         <ul class="pagination">
-            <li>
-                <a href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li>
-                <a href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
+            <c:if test="${pb.currentPage==1}">
+                <li class="previous disabled">
+                    <a href="#"
+                       aria-label="Previous">
+                        <span aria-hidden="false">&laquo;</span>
+                    </a>
+                </li>
+            </c:if>
+            <c:if test="${pb.currentPage!=1}">
+                <li>
+                    <a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${pb.currentPage-1}"
+                       aria-label="Previous">
+                        <span aria-hidden="false">&laquo;</span>
+                    </a>
+                </li>
+            </c:if>
+
+            <c:forEach begin="1" end="${pb.totalPage}" var="i" step="1">
+                <c:if test="${pb.currentPage==i}">
+                    <li class="active">
+                </c:if>
+                <c:if test="${pb.currentPage!=i}">
+                    <li>
+                </c:if>
+                <a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${i}">${i}</a></li>
+            </c:forEach>
+            <c:if test="${pb.currentPage==pb.totalPage}">
+                <li class="previous disabled">
+                    <a href="#"
+                       aria-label="Previous">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </c:if>
+            <c:if test="${pb.currentPage!=pb.totalPage}">
+                <li>
+                    <a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${pb.currentPage+1}"
+                       aria-label="Previous">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </c:if>
             <span style="font-size: 25px;margin-left: 5px">共 ${pb.totalCount} 条记录，共 ${pb.totalPage} 页</span>
         </ul>
     </nav>

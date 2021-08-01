@@ -20,12 +20,18 @@ public class FindUserByPageServlet extends HttpServlet {
         //2.获取请求参数
         String currentPage = request.getParameter("currentPage");
         String rows = request.getParameter("rows");
+        //对请求参数进行判断
+        if (currentPage == null || currentPage.equals("")) {
+            currentPage = "1";
+        }
+        if (rows == null || rows.equals("")) {
+            rows = "5";
+        }
         //3.调用service查询到pageBean
         UserService service = new UserServiceImpl();
         PageBean<User> pb = service.findUserByPage(currentPage, rows);
         //4.存入request域中
         request.setAttribute("pb", pb);
-        System.out.println(pb);
         //5.请求转发页面到list.jsp
         request.getRequestDispatcher("/list.jsp").forward(request, response);
     }

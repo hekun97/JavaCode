@@ -20,7 +20,7 @@ public class UserDeleteServlet extends HttpServlet {
         //3.调用UserService对象中的删除方法
         UserService service = new UserServiceImpl();
         int i = service.delete(id);
-        request.getRequestDispatcher("/userListServlet").forward(request, response);
+        request.getRequestDispatcher("/findUserByPageServlet").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

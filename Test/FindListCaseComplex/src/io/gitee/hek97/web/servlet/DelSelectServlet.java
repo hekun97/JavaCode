@@ -21,7 +21,7 @@ public class DelSelectServlet extends HttpServlet {
         UserService service = new UserServiceImpl();
         service.delSelect(uids);
         //4.重定向到UserListServlet，由UserListServlet转发到list.jsp
-        response.sendRedirect(request.getContextPath()+"/userListServlet");
+        response.sendRedirect(request.getContextPath()+"/findUserByPageServlet");
 
     }
 

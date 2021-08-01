@@ -37,7 +37,7 @@ public class UserUpdateServlet extends HttpServlet {
         request.setAttribute("update",i);
         //6.请求转发并给出更新结果
         if(i==1){
-            request.getRequestDispatcher("/userListServlet").forward(request,response);
+            request.getRequestDispatcher("/findUserByPageServlet").forward(request,response);
         }
         else {
             request.getRequestDispatcher("/update.jsp").forward(request,response);
