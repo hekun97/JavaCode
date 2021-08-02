@@ -51,9 +51,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delSelect(String[] uids) {
+    public void delUsers(String[] ids) {
         //调用dao删除用户信息
-        for (String uid : uids) {
+        for (String uid : ids) {
             dao.delete(Integer.parseInt(uid));
         }
     }
@@ -62,8 +62,12 @@ public class UserServiceImpl implements UserService {
     public PageBean<User> findUserByPage(String _currentPage, String _rows) {
         int currentPage = Integer.parseInt(_currentPage);
         int rows = Integer.parseInt(_rows);
+        //传入值不合理时
         if (currentPage <= 0) {
             currentPage = 1;
+        }
+        if (rows <= 0) {
+            rows = 5;
         }
         //1.创建空的PageBean对象
         PageBean<User> pb = new PageBean<>();

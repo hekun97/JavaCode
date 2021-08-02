@@ -16,10 +16,10 @@ public class DelSelectServlet extends HttpServlet {
         //1.设置编码
         request.setCharacterEncoding("utf-8");
         //2.获取请求参数
-        String[] uids = request.getParameterValues("uid");
+        String[] ids = request.getParameterValues("uid");
         //3.调用service
         UserService service = new UserServiceImpl();
-        service.delSelect(uids);
+        service.delUsers(ids);
         //4.重定向到UserListServlet，由UserListServlet转发到list.jsp
         response.sendRedirect(request.getContextPath()+"/findUserByPageServlet");
 

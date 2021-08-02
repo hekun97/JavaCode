@@ -50,10 +50,10 @@ public interface UserService {
     /**
      * 删除选中用户信息
      *
-     * @param uids
+     * @param ids
      * @return
      */
-    void delSelect(String[] uids);
+    void delUsers(String[] ids);
 
     /**
      * 通过当前页码和每页的记录数来实现分页
