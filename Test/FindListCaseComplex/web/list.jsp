@@ -36,22 +36,27 @@
             location.href = "${pageContext.request.contextPath}/userDeleteServlet?id=" + id;
         }
     }
+
     //当页面加载完成后
     window.onload = function () {
-        //给删除选中按钮添加单击事件
-        //给删除选中按钮(id=delSelected)添加单击事件，触发函数function()
+        //1.给删除选中按钮(id=delSelected)添加单击事件，触发函数function()
         document.getElementById("delSelected").onclick = function () {
+            //2.提示信息
             if (confirm("你确定要删除选中信息吗？")) {
+                //3.设置没有复选框被勾选(状态设置为假)
                 var flag = false;
+                //4.获取复选框(name="uid")地址的数组
                 var cbs = document.getElementsByName("uid");
+                //5.循环判断数组中的复选框的状态是否是被勾选
                 for (var i = 0; i < cbs.length; i++) {
+                    //6.如果存在被勾选的复选框(状态设置为真)，并结束循环
                     if (cbs[i].checked) {
                         flag = true;
                         break;
                     }
                 }
                 if (flag) {
-                    //将复选框的值(name=uid,value=用户的id)通过表单(id=form)提交到路径/delSelectUser
+                    //7.如果状态为真，将复选框的值(name=uid,value=用户的id)通过表单(id=form)提交到路径/delSelectUser，进行删除选中用户的操作
                     document.getElementById("form").submit();
                 }
             }
@@ -99,7 +104,8 @@
         <%--表格开始--%>
         <table border="1" class="table table-bordered table-hover">
             <tr class="success">
-                <th><input type="checkbox" id="firstCb"></th><%--表格头部复选框--%>
+                <th><input type="checkbox" id="firstCb"></th>
+                <%--表格头部复选框--%>
                 <th>编号</th>
                 <th>姓名</th>
                 <th>性别</th>
@@ -112,7 +118,8 @@
             <%--遍历request域中PageBean的List集合，获取用户信息--%>
             <c:forEach items="${pb.list}" var="user" varStatus="s">
                 <tr>
-                    <td><input type="checkbox" name="uid" value="${user.id}"></td><%--表体复选框--%>
+                    <td><input type="checkbox" name="uid" value="${user.id}"></td>
+                        <%--表体复选框--%>
                     <td>${s.count + (pb.currentPage-1)*pb.rows}</td>
                         <%--计算用户的编号，计算公式：循环次数+(当前页码-1)*每页显示行数--%>
                     <td>${user.name}</td>
