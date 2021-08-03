@@ -4,6 +4,7 @@ import io.gitee.hek97.domain.PageBean;
 import io.gitee.hek97.domain.User;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 用户管理的业务接口
@@ -59,7 +60,8 @@ public interface UserService {
      * 通过当前页码和每页的记录数来实现分页
      * @param _currentPage 当前页码
      * @param _rows 每页的记录数
+     * @param map 复杂条件查询的参数
      * @return 分页的对象
      */
-    PageBean<User> findUserByPage(String _currentPage,String _rows);
+    PageBean<User> findUserByPage(String _currentPage, String _rows, Map<String, String[]> condition);
 }

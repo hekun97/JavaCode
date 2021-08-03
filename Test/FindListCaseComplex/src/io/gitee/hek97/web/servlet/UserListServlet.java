@@ -14,6 +14,7 @@ import java.util.List;
 
 @WebServlet("/userListServlet")
 public class UserListServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //1.设置编码
         response.setCharacterEncoding("utf-8");
@@ -27,6 +28,7 @@ public class UserListServlet extends HttpServlet {
 
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doPost(request,response);
     }

@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
-import java.util.Map;
 
 public class UserDaoImpl implements UserDao {
     @Override
@@ -67,9 +66,9 @@ public class UserDaoImpl implements UserDao {
         //1.创建JdbcTemplate对象
         JdbcTemplate template = new JdbcTemplate(JDBCUtils.getDataSource());
         //2.定义sql语句
-        String sql ="select * from user where id =?";
+        String sql1 ="select * from user where id =?";
         //3.执行sql
-        User user = template.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class),id);
+        User user = template.queryForObject(sql1, new BeanPropertyRowMapper<User>(User.class),id);
         return user;
     }
 }

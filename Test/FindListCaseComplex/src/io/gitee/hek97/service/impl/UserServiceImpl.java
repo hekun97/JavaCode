@@ -7,6 +7,7 @@ import io.gitee.hek97.domain.User;
 import io.gitee.hek97.service.UserService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 用户管理的实体类
@@ -59,7 +60,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public PageBean<User> findUserByPage(String _currentPage, String _rows) {
+    public PageBean<User> findUserByPage(String _currentPage, String _rows, Map<String, String[]> condition) {
         int currentPage = Integer.parseInt(_currentPage);
         int rows = Integer.parseInt(_rows);
         //传入值不合理时
@@ -75,12 +76,12 @@ public class UserServiceImpl implements UserService {
         pb.setCurrentPage(currentPage);
         pb.setRows(rows);
         //3.调用dao查询总记录数totalCount，并给PageBean对象的总记录数(totalCount)赋值
-        int totalCount = dao.findTotalCount();
+        int totalCount = dao.findTotalCount(condition);
         pb.setTotalCount(totalCount);
         //4.计算开始的索引
         int start = (currentPage - 1) * rows;
         // 5.调用dao查询每页数据的list集合，并赋值给pageBean对象
-        List<User> list = dao.findByPage(start, rows);
+        List<User> list = dao.findByPage(start, rows, condition);
         pb.setList(list);
         //6.计算总页数,并赋值给pageBean对象
         int totalPage = (totalCount % rows == 0) ? (totalCount / rows) : (totalCount / rows + 1);

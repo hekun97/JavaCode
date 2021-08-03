@@ -3,6 +3,7 @@ package io.gitee.hek97.dao;
 import io.gitee.hek97.domain.User;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 用户操作的dao
@@ -18,7 +19,7 @@ public interface UserDao {
 
     User findUser(Integer id);
 
-    int findTotalCount();
+    int findTotalCount(Map<String, String[]> condition);
 
-    List<User> findByPage(int start, int rows);
+    List<User> findByPage(int start, int rows, Map<String, String[]> condition);
 }

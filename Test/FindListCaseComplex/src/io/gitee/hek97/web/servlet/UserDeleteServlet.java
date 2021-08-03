@@ -12,6 +12,7 @@ import java.io.IOException;
 
 @WebServlet("/userDeleteServlet")
 public class UserDeleteServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //1.设置编码
         request.setCharacterEncoding("utf-8");
@@ -23,6 +24,7 @@ public class UserDeleteServlet extends HttpServlet {
         request.getRequestDispatcher("/findUserByPageServlet").forward(request, response);
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doPost(request, response);
     }
