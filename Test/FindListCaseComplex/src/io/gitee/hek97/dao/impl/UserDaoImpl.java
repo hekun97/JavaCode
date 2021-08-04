@@ -12,7 +12,9 @@ import java.util.Map;
 
 public class UserDaoImpl implements UserDao {
     //使用JDBC操作数据库
-    //1.创建JdbcTemplate对象
+    /**
+     * 1.创建JdbcTemplate对象
+     */
     JdbcTemplate template = new JdbcTemplate(JDBCUtils.getDataSource());
 
     @Override
@@ -67,34 +69,17 @@ public class UserDaoImpl implements UserDao {
     @Override
     public int findTotalCount(Map<String, String[]> condition) {
         /*
-        定义sql语句，需要的sql类似：select count(*) from user where 1=1 and name=? and address=? and email=?
+        2.定义sql语句，需要的sql类似：select count(*) from user where 1=1 and name=? and address=? and email=?
           这里需要一个动态sql，通过动态拼接得到合适的sql查询语句
         */
         String sql = "select count(*) from user where 1 = 1 ";
-        //将sql转为线程安全的可变长字符串
-        StringBuffer sb = new StringBuffer(sql);
-        //获取一个List集合对象，用来存放sql中?的值
-        List<String> params = new ArrayList<>();
-        //遍历循环Map集合，获取List页面中传过来的复杂条件查询的键和值
-        for (String key : condition.keySet()) {
-            //如果键是当前页码（currentPage）或每页显示的条数（rows），则什么都不做，结束这次循环，开始下一次循环
-            if (key.equals("currentPage") || key.equals("rows")) {
-                continue;
-            }
-            //根据键（name、address、email）获取Map集合中存放的值（String类型的数组）,然后获取数组中第1个位置的值。
-            String value = condition.get(key)[0];
-            /*
-            如果值不为null且值不为空字符串。
-                将该键所需的模糊查询sql语句拼接到sb后面；
-                将该值作为该键模糊查询sql语句?的值存放到params的List集合中
-            */
-            if (value != null && !value.equals("")) {
-                sb.append(" and " + key + " like ?");
-                params.add("%" + value + "%");
-            }
-        }
-        //3.执行sql， params.toArray()是将List集合转化为数组
+        //3.定义params集合用于存放sql语句中?的值
+        List<Object> params = new ArrayList<>();
+        //4.调用抽取的复杂条件查询的方法
+        StringBuffer sb = conditionSql(sql, params, condition);
+        //5.执行sql， params.toArray()是将List集合转化为数组
         int count = template.queryForObject(sb.toString(), int.class, params.toArray());
+        //6.返回总记录数
         return count;
     }
 
@@ -102,34 +87,29 @@ public class UserDaoImpl implements UserDao {
     public List<User> findByPage(int start, int rows, Map<String, String[]> condition) {
         //2.定义sql语句
         String sql = "select * from user where 1 = 1 ";
-
-        StringBuffer sb = new StringBuffer(sql);
+        //3.定义params集合用于存放sql语句中?的值
         List<Object> params = new ArrayList<>();
-        for (String key : condition.keySet()) {
-            if (key.equals("currentPage") || key.equals("rows")) {
-                continue;
-            }
-            String value = condition.get(key)[0];
-            if (value != null && !value.equals("")) {
-                sb.append(" and " + key + " like ?");
-                params.add("%" + value + "%");
-            }
-        }
+        //4.调用抽取的复杂条件查询的方法
+        StringBuffer sb = conditionSql(sql, params, condition);
+        //5.在可变长sql语句最后加上分页的sql语句。
         sb.append("limit ? , ?");
+        //6.在params集合中存放sql语句中分页开始的索引（start）和每页显示条数（rows）
         params.add(start);
         params.add(rows);
-        //3.执行sql
+        //7.执行sql
         List<User> list = template.query(sb.toString(), new BeanPropertyRowMapper<User>(User.class), params.toArray());
+        //8.返回封装到集合中的用户信息
         return list;
     }
 
     /**
      * 用于拼接条件查询SQL的方法
-     * @param sql
-     * @param condition
-     * @return
+     *
+     * @param sql       原始sql
+     * @param condition 复杂查询条件
+     * @return 返回拼接好查询条件的SQL
      */
-    public String conditionSql(String sql, List<Object> params ,Map<String, String[]> condition) {
+    public StringBuffer conditionSql(String sql, List<Object> params, Map<String, String[]> condition) {
         //将sql转为线程安全的可变长字符串
         StringBuffer sb = new StringBuffer(sql);
         //遍历循环Map集合，获取List页面中传过来的复杂条件查询的键和值
@@ -143,13 +123,13 @@ public class UserDaoImpl implements UserDao {
             /*
             如果值不为null且值不为空字符串。
                 将该键所需的模糊查询sql语句拼接到sb后面；
-                将该值作为该键模糊查询sql语句?的值存放到params的List集合中
+                将该值作为该键模糊查询sql语句中?的值存放到params的List集合内。
             */
             if (value != null && !value.equals("")) {
                 sb.append(" and " + key + " like ?");
                 params.add("%" + value + "%");
             }
         }
-        return null;
+        return sb;
     }
 }
