@@ -42,7 +42,7 @@
 
         <div class="form-group">
             <label>籍贯：</label>
-            <select class="form-control" id="jiguan">
+            <select class="form-control" id="jiguan" name="address">
                 <option  value="广东">广东</option>
                 <option value="广西">广西</option>
                 <option value="湖南">湖南</option>

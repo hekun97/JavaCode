@@ -23,6 +23,8 @@
     <center><h3>添加联系人页面</h3></center>
     <form action="${pageContext.request.contextPath}/userAddServlet" method="post">
         <div class="form-group">
+            <%-- <label>标签中的属性for="name"和下面的<input>标签中的属性id="name"相对应。
+            功能：可以达到在表单中，点击姓名自动会选中姓名输入框中进行输入内容 --%>
             <label for="name">姓名：</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="请输入姓名">
         </div>
@@ -40,21 +42,21 @@
 
         <div class="form-group">
             <label>籍贯：</label>
-            <select name="address" class="form-control" id="jiguan">
-                <option value="广东">广东</option>
+            <select class="form-control" id="jiguan" name="address">
+                <option  value="广东">广东</option>
                 <option value="广西">广西</option>
                 <option value="湖南">湖南</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label>QQ：</label>
-            <input type="text" class="form-control" name="qq" placeholder="请输入QQ号码"/>
+            <label for="qq">QQ：</label>
+            <input type="text" class="form-control" id="qq" name="qq" placeholder="请输入QQ号码"/>
         </div>
 
         <div class="form-group">
-            <label>Email：</label>
-            <input type="text" class="form-control" name="email" placeholder="请输入邮箱地址"/>
+            <label for="email">Email：</label>
+            <input type="text" class="form-control" id="email" name="email" placeholder="请输入邮箱地址"/>
         </div>
 
         <div class="form-group" style="text-align: center">
