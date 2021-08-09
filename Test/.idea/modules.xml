@@ -11,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/LoginPractice/LoginPractice.iml" filepath="$PROJECT_DIR$/LoginPractice/LoginPractice.iml" />
       <module fileurl="file://$PROJECT_DIR$/Response/Response.iml" filepath="$PROJECT_DIR$/Response/Response.iml" />
       <module fileurl="file://$PROJECT_DIR$/Tomcat/Tomcat.iml" filepath="$PROJECT_DIR$/Tomcat/Tomcat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/proxy/proxy.iml" filepath="$PROJECT_DIR$/proxy/proxy.iml" />
     </modules>
   </component>
 </project>
