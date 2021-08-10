@@ -27,16 +27,33 @@ public class ProxyTest {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 System.out.println("我被执行了...");
-                System.out.println(method.getName());//获取代理对象调用的方面名称
-                System.out.println(args[0]);//获取传递的实际参数
-                //使用lenovo(真实对象)调用method(代理对象调用的方法，如：sale、show )方法
-                Object obj = method.invoke(lenovo, args);
-                return obj;
+/*                System.out.println("代理对象调用的方法名称："+method.getName());
+                System.out.println("传递的实际参数："+args[0]);*/
+                if (method.getName().equals("sale")) {
+                    //1.增强参数
+                    double money = (double) args[0];
+                    money = money * 0.85;
+                    //3.增强方法体执行逻辑
+                    //3.1 买前专车接
+                    System.out.println("专车接你");
+                    //使用lenovo(真实对象)调用method(代理对象调用的方法，如：sale)方法
+                    Object obj = method.invoke(lenovo, money);
+                    //3.2 送货上门
+                    System.out.println("送货上门");
+                    //2.增强返回值类型
+                    return obj+"_鼠标垫";
+                }
+                else{
+                    //使用lenovo(真实对象)调用method(代理对象调用的方法，如：sale)方法
+                    Object obj = method.invoke(lenovo, args);
+                    return obj;
+                }
+
             }
         });
-/*        String sale = proxyLenovo.sale(8000);
-        System.out.println(sale);*/
-        String show = proxyLenovo.show();
-        System.out.println(show);
+        String sale = proxyLenovo.sale(8000);
+        System.out.println(sale);
+/*        String show = proxyLenovo.show();
+        System.out.println(show);*/
     }
 }
