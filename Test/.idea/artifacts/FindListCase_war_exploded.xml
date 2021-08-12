@@ -2,10 +2,10 @@
   <artifact type="exploded-war" name="FindListCase:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/FindListCase_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="FindListCaseSimple/web/Web" />
+      <element id="javaee-facet-resources" facet="FindListCase/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="FindListCaseSimple" />
+          <element id="module-output" name="FindListCase" />
         </element>
       </element>
     </root>

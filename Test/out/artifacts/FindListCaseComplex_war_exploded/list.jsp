@@ -78,18 +78,21 @@
 <div class="container">
     <h3 style="text-align: center">用户信息列表</h3>
     <div style="float: left;">
-        <form class="form-inline">
+        <%--input标签中的value属性的值为从request域对象中获取的值--%>
+        <form class="form-inline" action="${pageContext.request.contextPath}/findUserByPageServlet">
             <div class="form-group">
                 <label for="exampleInputName1">姓名</label>
-                <input type="text" class="form-control" id="exampleInputName1" placeholder="Jane Doe">
+                <input type="text" name="name" class="form-control" id="exampleInputName1" value="${condition.name[0]}">
             </div>
             <div class="form-group">
                 <label for="exampleInputName2">籍贯</label>
-                <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+                <input type="text" name="address" class="form-control" id="exampleInputName2"
+                       value="${condition.address[0]}">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail2">邮箱</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+                <input type="text" name="email" class="form-control" id="exampleInputEmail2"
+                       value="${condition.email[0]}">
             </div>
             <button type="submit" class="btn btn-default">查询</button>
         </form>
@@ -152,8 +155,8 @@
             </c:if>
             <%--不等于1时，可用上一页--%>
             <c:if test="${pb.currentPage!=1}">
-                <li>
-                    <a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${pb.currentPage-1}"
+                <li><%-- 提交的请求参数分别为当前页码和复杂条件查询的姓名、地址、邮箱，以实现条件查询后仍旧能实现分页效果--%>
+                    <a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${pb.currentPage-1}&name=${condition.name[0]}&address=${condition.address[0]}&email=${condition.email[0]}"
                        aria-label="Previous">
                         <span aria-hidden="false">&laquo;</span>
                     </a>
@@ -171,7 +174,8 @@
                 <c:if test="${pb.currentPage!=i}">
                     <li>
                 </c:if>
-                <a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${i}">${i}</a></li>
+                <%-- 提交的请求参数分别为当前页码和复杂条件查询的姓名、地址、邮箱，以实现条件查询后仍旧能实现分页效果--%>
+                <a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${i}&name=${condition.name[0]}&address=${condition.address[0]}&email=${condition.email[0]}">${i}</a></li>
             </c:forEach>
             <%--分页条结束--%>
             <%--下一页开始--%>
@@ -186,8 +190,8 @@
             </c:if>
             <%--不等于时，下一页可用--%>
             <c:if test="${pb.currentPage!=pb.totalPage}">
-                <li>
-                    <a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${pb.currentPage+1}"
+                <li><%-- 提交的请求参数分别为当前页码和复杂条件查询的姓名、地址、邮箱，以实现条件查询后仍旧能实现分页效果--%>
+                    <a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${pb.currentPage+1}&name=${condition.name[0]}&address=${condition.address[0]}&email=${condition.email[0]}"
                        aria-label="Previous">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
