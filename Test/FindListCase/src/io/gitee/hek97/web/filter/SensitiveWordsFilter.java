@@ -1,7 +1,6 @@
 package io.gitee.hek97.web.filter;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,7 +13,7 @@ import java.util.List;
 /**
  * 敏感词汇过滤器，过滤路径：testServlet
  */
-@WebFilter("/testServlet")
+//@WebFilter("/testServlet")
 public class SensitiveWordsFilter implements Filter {
     /**
      * 敏感词汇集合
