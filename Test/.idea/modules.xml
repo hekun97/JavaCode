@@ -3,7 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Cookie&amp;Session/Cookie&amp;Session.iml" filepath="$PROJECT_DIR$/Cookie&amp;Session/Cookie&amp;Session.iml" />
+<<<<<<< HEAD
+      <module fileurl="file://$PROJECT_DIR$/Filter&amp;Listener/Filter&amp;Listener.iml" filepath="$PROJECT_DIR$/Filter&amp;Listener/Filter&amp;Listener.iml" />
+=======
       <module fileurl="file://$PROJECT_DIR$/FindListCase/FindListCase.iml" filepath="$PROJECT_DIR$/FindListCase/FindListCase.iml" />
+>>>>>>> adba37d48fac1cb9a7d3121f6bf16064335a9d29
       <module fileurl="file://$PROJECT_DIR$/FindListCaseComplex/FindListCaseComplex.iml" filepath="$PROJECT_DIR$/FindListCaseComplex/FindListCaseComplex.iml" />
       <module fileurl="file://$PROJECT_DIR$/JDBC/JDBC.iml" filepath="$PROJECT_DIR$/JDBC/JDBC.iml" />
       <module fileurl="file://$PROJECT_DIR$/JDBCTemplate/JDBCTemplate.iml" filepath="$PROJECT_DIR$/JDBCTemplate/JDBCTemplate.iml" />

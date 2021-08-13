@@ -22,10 +22,10 @@
     用户名:<input type="text" name="username"> <br>
     密码:<input type="password" name="password"><br>
     验证码：<input type="text" name="judeCode">
-    <img id="checkCode" src="/today/demo"/><br>
+    <img id="checkCode" src="/today/checkCodeServlet"/><br>
     <input type="submit" value="登录">
 </form>
-<%=request.getAttribute("code_error")==null?"":request.getAttribute("code_error")%>
-<%=request.getAttribute("login_error")==null?"":request.getAttribute("login_error")%>
+<div><%=request.getAttribute("code_error")==null?"":request.getAttribute("code_error")%></div>
+<div><%=request.getAttribute("login_error")==null?"":request.getAttribute("login_error")%></div>
 </body>
 </html>

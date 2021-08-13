@@ -27,8 +27,8 @@ public class LoginServlet extends HttpServlet {
         //5.对输入的验证码和图片验证码进行对比
         //5.1不一致，请求转发到验证码有误页面
         if (jude.equalsIgnoreCase(judeCode) == false) {
-            request.setAttribute("code_error","验证码错误");
-            request.getRequestDispatcher("/login.jsp").forward(request,response);
+            request.setAttribute("code_error", "验证码错误");
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
         }
         //5.2数据一致
         else {
@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
             User user = userDao.login(loginUser);
             if (user == null) {
                 //9.登录失败，转发失败页面
-                request.setAttribute("login_error","用户名或密码错误");
+                request.setAttribute("login_error", "用户名或密码错误");
                 request.getRequestDispatcher("/login.jsp").forward(request, response);
             } else {
                 //10.登录成功，将user存入共享域对象
