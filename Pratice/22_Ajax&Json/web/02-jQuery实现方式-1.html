@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script>
+        //2.定义方法fun()
+        function fun() {
+            $.ajax({
+                url: "ajaxServlet",//请求路径
+                type: "POST",//请求方式
+                //请求参数，两种方式都可以，建议第二种
+                //data:"username=jack&age=23",
+                data: {"username": "jack", "age": 23},
+                //
+                success: function (data) {
+                    //获取服务器的响应结果
+                    alert(data);
+                },//响应成功后的回调函数
+                error:function () {
+                    alert("出错了...")
+                },//如果请求响应出现错误，会执行的回调函数
+                dataType:"text"//响应数据格式
+            });
+        }
+    </script>
+</head>
+<body>
+<!--1.定义一个按钮发送异步请求，触发fun()函数-->
+<input type="button" value="发送异步请求" onclick="fun();">
+<input type="text">
+<p id="myDiv">响应结果</p>
+</body>
+</html>
