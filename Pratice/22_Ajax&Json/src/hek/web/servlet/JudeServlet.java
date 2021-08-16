@@ -22,21 +22,21 @@ public class JudeServlet extends HttpServlet {
         //3.设置map集合
         Map<String, Object> map = new HashMap<>(2);
         //3.1存在
-        if("tom".equals(username)){
-            map.put("userExsit",true);
-            map.put("msg","用户名重复");
+        if ("tom".equals(username)) {
+            map.put("userExsit", true);
+            map.put("msg", "用户名重复");
         }
         //3.2不存在
-        else{
-            map.put("userExsit",false);
-            map.put("msg","用户名可用");
+        else {
+            map.put("userExsit", false);
+            map.put("msg", "用户名可用");
         }
         //4.把Java对象(map集合)转为JSON数据
         //4.1创建jackson核心对象ObjectMapper
         ObjectMapper mapper = new ObjectMapper();
         System.out.println(mapper);
-        //4.2转换，把map集合转换为JSON后，写入到response.getWriter()流内
-        mapper.writeValue(response.getWriter(),map);
+        //4.2转换，把map集合转换为JSON后，写入到response.getWriter()流中
+        mapper.writeValue(response.getWriter(), map);
     }
 
     @Override

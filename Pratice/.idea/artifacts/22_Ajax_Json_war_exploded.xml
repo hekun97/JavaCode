@@ -8,10 +8,10 @@
           <element id="module-output" name="22_Ajax&amp;Json" />
         </element>
         <element id="directory" name="lib">
-          <element id="file-copy" path="$PROJECT_DIR$/22_Ajax&amp;Json/web/WEB-INF/Lib/jackson-core-2.2.3.jar" />
-          <element id="file-copy" path="$PROJECT_DIR$/22_Ajax&amp;Json/web/WEB-INF/Lib/jackson-annotations-2.2.3.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/22_Ajax&amp;Json/web/WEB-INF/lib/jackson-core-2.2.3.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/22_Ajax&amp;Json/web/WEB-INF/lib/jackson-annotations-2.2.3.jar" />
           <element id="library" level="module" name="JUnit4" module-name="22_Ajax&amp;Json" />
-          <element id="file-copy" path="$PROJECT_DIR$/22_Ajax&amp;Json/web/WEB-INF/Lib/jackson-databind-2.2.3.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/22_Ajax&amp;Json/web/WEB-INF/lib/jackson-databind-2.2.3.jar" />
         </element>
       </element>
     </root>

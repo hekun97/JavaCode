@@ -19,12 +19,12 @@
                     var span = $("#jude_msg");
                     //存在
                     if (data.userExsit) {
-                        span.css("red")
+                        span.css("color","red")
                         span.html(data.msg);
                     }
                     //不存在
                     else {
-                        span.css("green")
+                        span.css("color","green")
                         span.html(data.msg);
                     }
                 }, "json")
@@ -36,9 +36,8 @@
 </head>
 <body>
 <!--1.定义一个按钮发送异步请求，触发fun()函数-->
-<input type="text" id="username">
-<span id="jude_msg"></span>
-<input type="password">
+<input type="text" id="username"><span id="jude_msg"></span><br>
+<input type="password"><br>
 <input type="submit" value="提交">
 </body>
 </html>

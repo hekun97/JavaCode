@@ -5,24 +5,29 @@
     <title>Title</title>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script>
+        //当文档加载完成后
         $(function () {
+            //id为username的输入框失去焦点后触发函数
             $("#username").blur(function () {
+                //获取id为username的输入框重的值
                 var username = $(this).val();
-                //发送Ajax请求
-                //{"userExsit":true,"msg":"用户名重复"}
-                //{"userExsit":false,"msg":"用户名可用"}
+                /*发送Ajax请求，期待返回的数据
+                    {"userExsit":true,"msg":"用户名重复"}
+                    {"userExsit":false,"msg":"用户名可用"}*/
                 $.post("/judeServlet", {username: username}, function (data) {
-                    alert(data);
+                    //获取id为jude_msg的span
                     var span = $("#jude_msg");
+                    //存在
                     if (data.userExsit) {
-                        span.css("red")
+                        span.css("color","red")
                         span.html(data.msg);
-                    } else {
-                        span.css("green")
+                    }
+                    //不存在
+                    else {
+                        span.css("color","green")
                         span.html(data.msg);
                     }
                 }, "json")
-
             })
         })
 
@@ -31,9 +36,8 @@
 </head>
 <body>
 <!--1.定义一个按钮发送异步请求，触发fun()函数-->
-<input type="text" id="username">
-<span id="jude_msg"></span>
-<input type="password">
+<input type="text" id="username"><span id="jude_msg"></span><br>
+<input type="password"><br>
 <input type="submit" value="提交">
 </body>
 </html>
